@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 // Import Methods
-const { newProperty, updateProperty, deleteProperty } = require('../controllers/propertiesController');
+const { newProperty, updateProperty, deleteProperty, getProperty } = require('../controllers/propertiesController');
 
-// router.route('').get();
+router.route('/properties/:address').get(getProperty);
 
 router.route('/properties/new').post(newProperty);
 router.route('/properties/:id').post(updateProperty);

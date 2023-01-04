@@ -62,3 +62,17 @@ exports.deleteProperty = async (req, res, next) => {
 // Publish a property => /properties/publish/:id
 
 // Get property by address => /properties/:address
+exports.getProperty = async (req, res, next) => {
+    const address = req.params.address;
+
+    const property = await Property.findOne({
+        address: address
+    });
+    // console.log(address);
+    // console.log(property);
+
+    res.status(200).json({
+        success: true,
+        data: property
+    });
+}
