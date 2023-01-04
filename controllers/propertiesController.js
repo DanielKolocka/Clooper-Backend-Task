@@ -23,6 +23,7 @@ exports.updateProperty = async (req, res, next) => {
             success: false,
             message: 'Property not found.'
         });
+        return;
     }
 
     // Update the property if found
@@ -38,6 +39,25 @@ exports.updateProperty = async (req, res, next) => {
 }
 
 // Delete a property => /properties/:id
+exports.deleteProperty = async (req, res, next) => {
+    let property = await Property.findById(req.params.id);
+
+    if (!property) {
+        res.status(404).json({
+            success: false,
+            message: 'Property not found.'
+        });
+
+        return;
+    }
+
+    property = await Property.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+        success: true,
+        message: 'Property is deleted.',
+    });
+
+}
 
 // Publish a property => /properties/publish/:id
 
