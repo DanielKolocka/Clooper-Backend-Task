@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // Import Methods
-const {test} = require('../controllers/authController');
+const { } = require('../controllers/usersController');
 
-router.route('/test').get(test);
+// router.route('').get();
 
 module.exports = router;

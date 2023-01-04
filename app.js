@@ -28,7 +28,7 @@ process.on('uncaughtException', err => {
 });
 
 //Connecting to db
-// connectDataBase();
+connectDataBase();
 
 // Setup security headers (helmet)
 app.use(helmet());
@@ -54,9 +54,11 @@ const limiter = rateLimit({
 app.use(limiter);
 
 //importing routes
-const auth = require('./routes/auth');
+const properties = require('./routes/properties');
+// const users = require('./routes/users');
 
-app.use('/', auth);
+app.use('/', properties);
+// app.use('/', users);
 
 // Handle Unhandled Routes
 // To Do...
