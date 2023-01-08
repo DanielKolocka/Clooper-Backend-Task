@@ -34,7 +34,3 @@ is_published => true|false
 
 Note: 
 Property is not automatically published when it is created, and can only be published when approved by an admin 
-
-
-To-Do:
-- Send an email when user created a property.

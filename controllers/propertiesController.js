@@ -1,5 +1,6 @@
 const Property = require('../models/properties');
 const User = require('../models/users');
+const sendEmail = require('../sendEmail');
 
 // Create new property => /properties/new/:id
 exports.newProperty = async (req, res, next) => {
@@ -11,11 +12,26 @@ exports.newProperty = async (req, res, next) => {
 
             res.status(200).json({
                 success: true,
-                message: 'Property Created',
+                message: 'Property Created. Email put in queue.',
                 data: property
             });
+
+            const message = `The following property has been created:\n\n${property.name}\n${property.address}\n\nProperty created by user: ${user.first_name} ${user.last_name}`;
+            const delay = 20*60*1000;
+            setTimeout(async function() {
+                try {
+                    await sendEmail({
+                        email: 'metrics@clooper.com',
+                        subject: 'Clooper Property Created-Requires Approval',
+                        message
+                    });
+                } catch (error) {
+                    console.log('Email has not been sent.');
+                    return;
+                }
+            }, delay
+            ); 
         }
-        
     }
     else {
         res.status(401).json({
