@@ -55,10 +55,10 @@ app.use(limiter);
 
 //importing routes
 const properties = require('./routes/properties');
-// const users = require('./routes/users');
+const users = require('./routes/users');
 
 app.use('/', properties);
-// app.use('/', users);
+app.use('/', users);
 
 // Handle Unhandled Routes
 // To Do...

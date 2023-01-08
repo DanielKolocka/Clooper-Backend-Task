@@ -60,6 +60,29 @@ exports.deleteProperty = async (req, res, next) => {
 }
 
 // Publish a property => /properties/publish/:id
+exports.publishProperty = async(req, res, next) => {
+    const propertyId = req.params.id;
+    let property = await Property.findById(propertyId);
+
+    if (!property) {
+        res.status(404).json({
+            success: false,
+            message: 'Property not found'
+        });
+        return;
+    }
+
+    update = { is_published : true }
+    property = await Property.findByIdAndUpdate(propertyId, update, {
+        new : true
+    });
+
+    res.status(200).json({
+        success: true,
+        message: 'Property has been published',
+    });
+
+}
 
 // Get property by address => /properties/:address
 exports.getProperty = async (req, res, next) => {

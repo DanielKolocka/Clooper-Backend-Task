@@ -84,7 +84,6 @@ const propertySchema = new mongoose.Schema({
     is_published: {
         type: Boolean,
         default: false,
-        select: false
     }
 });
 
