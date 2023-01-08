@@ -81,10 +81,18 @@ const propertySchema = new mongoose.Schema({
             message: 'Select the rent frequency'
         }
     },
+    is_approved: {
+        type: Boolean
+    },
     is_published: {
         type: Boolean,
         default: false,
     }
+});
+
+propertySchema.pre('save', function (next) {
+    this.is_approved = false;
+    next();
 });
 
 module.exports = mongoose.model('Property', propertySchema);

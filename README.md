@@ -37,8 +37,4 @@ Property is not automatically published when it is created, and can only be publ
 
 
 To-Do:
-- Create loggin in/authenitcaiton method with JTW/bearer tokens.
-- For admins, create a route where in the req.body they recieve a user and approve them. 
-- Update each route for users to check if they are approved before they perform tasks (they can search unapproved)
-- Test publish property method
 - Send an email when user created a property.
